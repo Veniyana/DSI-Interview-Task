@@ -13,7 +13,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('is_active',1)->get();
+        return view('users.index', compact('users'));
+    }
+
+    public function indexDeactivated()
+    {
+        $users = User::where('is_active',0)->get();
         return view('users.index', compact('users'));
     }
 
@@ -101,12 +107,14 @@ class UserController extends Controller
 
     public function activate(User $user)
     {
-
+        $user->update(['is_active' => 1]);
+        return 1;
     }
 
     public function deactivate(User $user)
     {
-
+        $user->update(['is_active' => 0]);
+        return 1;
     }
 
     public function destroy(User $user)

@@ -21,4 +21,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('user', \App\Http\Controllers\User\UserController::class)->shallow();
+    Route::group(['prefix'=>'users','as'=>'users.'], function() {
+        Route::get('/deactivated',[\App\Http\Controllers\User\UserController::class,'indexDeactivated'])->name('deactivated');
+       Route::post('{user}/activate',[\App\Http\Controllers\User\UserController::class,'activate']);
+       Route::post('{user}/deactivate',[\App\Http\Controllers\User\UserController::class,'deactivate']);
+    });
 });

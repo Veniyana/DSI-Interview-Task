@@ -105,7 +105,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <a class="btn btn-primary w-100">Back</a>
+                                <a class="btn btn-primary w-100" href="{{url()->previous()}}">Back</a>
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-success w-100">Submit</button>
